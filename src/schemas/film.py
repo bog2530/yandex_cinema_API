@@ -2,7 +2,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, Field
 
-from schemas.genres import Genres
+from schemas.genre import Genres
 from schemas.person import Person
 
 
