@@ -1,0 +1,45 @@
+version: '3.9'
+
+
+
+services:
+#  service:
+#    build: .
+#    container_name: api_movies
+#    restart: unless-stopped
+#    env_file:
+#      - .env
+#    networks:
+#      - networks_movies
+
+  elasticsearch:
+    image: elasticsearch:8.10.2
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms3g -Xmx3g
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./not_for_git/elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - networks_movies
+
+  redis-node-1:
+    image: redis:7.4.2
+    container_name: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    volumes:
+      - ./not_for_git/redis-conf:/usr/local/etc/redis
+      - .redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    networks:
+      - networks_movies
+
+networks:
+  networks_movies:
+    external: false
