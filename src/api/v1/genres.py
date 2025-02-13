@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import Depends, APIRouter
 
-from schemas.genres import Genres
+from schemas.genre import Genres
 from services.genre_service import GenreService
 from dependencies import get_genre_service
 
