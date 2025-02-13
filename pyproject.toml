@@ -5,6 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi==0.115.8",
+    "orjson==3.10.15",
     "pydantic-settings==2.7.1",
     "elasticsearch[async]==8.13.2",
     "redis==5.0.4 ",

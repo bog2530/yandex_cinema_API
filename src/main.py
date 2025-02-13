@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     app.es = AsyncElasticsearch(
         hosts=[
             f"{settings.ELASTIC_SCHEMA}{settings.ELASTIC_HOST}:{settings.ELASTIC_PORT}"
-        ]
+        ],
     )
     yield
     await app.redis.close()
