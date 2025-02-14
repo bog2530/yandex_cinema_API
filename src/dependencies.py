@@ -5,6 +5,7 @@ from starlette.requests import Request
 from elasticsearch import AsyncElasticsearch
 from redis import Redis
 
+from core.settings import settings
 from services.film_service import FilmService
 from services.genre_service import GenreService
 from services.person_service import PersonService
@@ -23,7 +24,7 @@ def get_film_service(
     redis: Redis = Depends(get_redis),
     elastic: AsyncElasticsearch = Depends(get_elastic),
 ) -> FilmService:
-    return FilmService(redis, elastic)
+    return FilmService(redis, elastic, settings.ELASTIC_SCHEMA)
 
 
 @lru_cache()

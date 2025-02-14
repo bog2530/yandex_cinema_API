@@ -14,9 +14,7 @@ from api import list_of_routes
 async def lifespan(app: FastAPI):
     app.redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
     app.es = AsyncElasticsearch(
-        hosts=[
-            f"{settings.ELASTIC_SCHEMA}{settings.ELASTIC_HOST}:{settings.ELASTIC_PORT}"
-        ],
+        hosts=[f"{settings.ELASTIC_HOST}:{settings.ELASTIC_PORT}"],
     )
     yield
     await app.redis.close()
